@@ -14,6 +14,8 @@ const cardImages = [
 function App() {
   const [ cards, setCards ] = useState([]);
   const [ turns, setTurns ] = useState(0);
+  const [ choiceOne, setChoiceOne ] = useState(null);
+  const [ choiceTwo, setChoiceTwo ] = useState(null);
 
   const cardsShuffle = () => {
     const duplicatedCards = [ ...cardImages, ...cardImages];
@@ -23,6 +25,10 @@ function App() {
   
       setCards(shuffleCards);
       setTurns(0);
+  }
+
+  const handleChoice = (card) => {
+    choiceOne ? setChoiceTwo(card) : setChoiceOne(card);
   }
 
   return (
@@ -35,6 +41,7 @@ function App() {
           <SingleCard 
             key={card.id} 
             card={card}
+            handleChoice={handleChoice}
           />
         ))}
       </div>
